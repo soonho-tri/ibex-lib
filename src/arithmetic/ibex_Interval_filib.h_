@@ -457,7 +457,8 @@ inline Interval exp(const Interval& x) {
 }
 
 inline Interval log(const Interval& x) {
-	if (x.ub()<=0) // filib returns (-oo,-DBL_MAX) if x.ub()==0, instead of EMPTY_SET
+        // soonhokong: we had some problem with the following line, so I changed the guard condition to x.ub() < 0
+	if (x.ub()<0) // filib returns (-oo,-DBL_MAX) if x.ub()==0, instead of EMPTY_SET
 		return Interval::EMPTY_SET;
 	else if (x.ub()<=next_float(0))
 		return Interval(NEG_INFINITY,filib::filib_consts<FI_BASE>::q_minr);
