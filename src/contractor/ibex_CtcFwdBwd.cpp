@@ -69,7 +69,7 @@ void CtcFwdBwd::init() {
 
 void CtcFwdBwd::contract(IntervalVector& box) {
 
-	assert(box.size()==f.nb_var());
+	assert(box.size()>=f.nb_var());
 
 	//std::cout << " hc4 of " << f << "=" << d << " with box=" << box << std::endl;
 	if (f.backward(d,box)) {
