@@ -214,8 +214,8 @@ namespace {
 
 // to store the link between a symbol and its "creator"
 NodeMap<const Variable*>& variables() {
-	static NodeMap<const Variable*> _variables;
-	return _variables;
+	static NodeMap<const Variable*> * _variables = new NodeMap<const Variable*>();
+	return *_variables;
 }
 
 }
