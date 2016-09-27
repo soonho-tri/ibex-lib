@@ -134,7 +134,11 @@ def configure (conf):
 				
 		################################		
 		# check if CLP is installed	
-		if not with_any_solver: 
+		if not with_any_solver:
+                        if sys.platform == 'darwin':
+		                conf.env.append_unique ("INCLUDES", "/usr/local/include/clp")
+			        conf.env.append_unique ("INCLUDES", "/usr/local/include/coinutils/coin")
+
 			has_Clp_h = conf.check_cxx (header_name	= "coin/ClpSimplex.hpp",mandatory = False)
 			has_Clplib = conf.check_cxx (lib = ["Clp","CoinUtils","z","m"], uselib_store = "IBEX_DEPS",
 										libpath = [],
