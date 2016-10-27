@@ -136,8 +136,11 @@ def configure (conf):
 		# check if CLP is installed	
 		if not with_any_solver:
                         if sys.platform == 'darwin':
+                                # For OSX, check if homebrew installation of CLP exists.
+                                # You can install it via (brew install coin-or-tools/coinor/clp)
 		                conf.env.append_unique ("INCLUDES", "/usr/local/include/clp")
 			        conf.env.append_unique ("INCLUDES", "/usr/local/include/coinutils/coin")
+		                conf.env.append_unique ("LIBPATH",  "/usr/local/lib/")
 
 			has_Clp_h = conf.check_cxx (header_name	= "coin/ClpSimplex.hpp",mandatory = False)
 			has_Clplib = conf.check_cxx (lib = ["Clp","CoinUtils","z","m"], uselib_store = "IBEX_DEPS",
