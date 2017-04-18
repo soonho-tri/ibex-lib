@@ -47,3 +47,4 @@ newdoc/_build
 !**/examples/*cpp
 !**/examples/makefile
 
+bazel-*
