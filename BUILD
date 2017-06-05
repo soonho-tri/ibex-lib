@@ -59,6 +59,7 @@ IBEX_SRCS = [
     "src/function/ibex_CompiledFunction.cpp",
     "src/function/ibex_Eval.cpp",
     "src/function/ibex_ExprDomain.cpp",
+    "src/function/ibex_Fnc.cpp",
     "src/function/ibex_Function.cpp",
     "src/function/ibex_Gradient.cpp",
     "src/function/ibex_HC4Revise.cpp",
