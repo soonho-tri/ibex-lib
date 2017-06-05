@@ -17,6 +17,7 @@
 #include "ibex_ExprSize.h"
 #include "ibex_ExprCmp.h"
 #include "ibex_String.h"
+#include <memory>
 #include <sstream>
 #include <limits.h>
 #include <stdio.h>
@@ -214,7 +215,7 @@ namespace {
 
 // to store the link between a symbol and its "creator"
 NodeMap<const Variable*>& variables() {
-	static NodeMap<const Variable*> * _variables = new NodeMap<const Variable*>();
+	static auto _variables = std::make_unique<NodeMap<const Variable*>>();
 	return *_variables;
 }
 
