@@ -13,7 +13,6 @@
 #include "ibex_mistral_Bitset.h"
 
 #include <cassert>
-#include <type_traits>
 
 namespace ibex {
 
@@ -46,12 +45,7 @@ public:
 	/**
 	 * \brief Copy constructor.
 	 */
-	BitSet(const BitSet& b) = default;
-
-	/**
-	 * \brief Move constructor.
-	 */
-	BitSet(BitSet&& b) = default;
+	BitSet(const BitSet& b);
 
 	/**
 	 * \brief Create a copy of a list (given as an array of n integers).
@@ -95,14 +89,9 @@ public:
 	bool operator!=(const BitSet& b);
 
 	/**
-	 * \brief Set this to another (copy assignment).
+	 * \brief Set this to another.
 	 */
-	BitSet& operator=(const BitSet& b) = default;
-
-	/**
-	 * \brief Set this to another (move assignment).
-	 */
-	BitSet& operator=(BitSet&& b) = default;
+	BitSet& operator=(const BitSet& b);
 
 	/**
 	 * \brief Set this list to the union with another.
@@ -197,6 +186,8 @@ std::ostream& operator<<(std::ostream& os, const BitSet& b);
 
 inline BitSet::BitSet(int n) : bitset(0,n-1,Mistral::BitSet::empt) { }
 
+inline BitSet::BitSet(const BitSet& b) : bitset(b.bitset) { }
+
 inline BitSet::BitSet(const int n, const int* l) : bitset(n,l) { }
 
 inline BitSet BitSet::empty(int n) { return BitSet(n); }
@@ -216,6 +207,8 @@ inline BitSet BitSet::singleton(int n, int i) {
 inline bool BitSet::operator==(const BitSet& b) { return bitset==b.bitset; }
 
 inline bool BitSet::operator!=(const BitSet& b) { return bitset!=b.bitset; }
+
+inline BitSet& BitSet::operator=(const BitSet& b) { bitset=b.bitset; return *this; }
 
 inline BitSet& BitSet::operator|=(const BitSet& b) { bitset.union_with(b.bitset); return *this; }
 

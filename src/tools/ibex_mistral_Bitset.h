@@ -159,15 +159,6 @@ public:
 			copy(q);
 		return *this;
 	}
-	// Move assignment operator.
-	Bitset<WORD_TYPE,FLOAT_TYPE>& operator=(Bitset<WORD_TYPE,FLOAT_TYPE>&& q) noexcept
-	{
-		pos_words = q.pos_words;
-		neg_words = q.neg_words;
-		table = q.table;
-		q.table = nullptr;
-		return *this;
-	}
 	void reinitialise(const int lb, const int ub, const WORD_TYPE p)
 	{
 		table += neg_words;
@@ -257,11 +248,6 @@ public:
 	{
 		initialise();
 		clone( s );
-	}
-	// Move constructor.
-        Bitset(Bitset<WORD_TYPE,FLOAT_TYPE>&& s) noexcept : pos_words{s.pos_words}, neg_words{s.neg_words}, table{s.table}
-	{
-		s.table = nullptr;
 	}
 	void clone(const Bitset<WORD_TYPE,FLOAT_TYPE>& s)
 	{
