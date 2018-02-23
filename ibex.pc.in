@@ -6,5 +6,6 @@ Name: ibex
 Description: A C++ library for interval-based algorithm design
 Version: @VERSION@
 Requires: clp
-Cflags: @INCLUDES@ @CXXFLAGS@
-Libs: @LIBPATH@ -libex @LIBS@
+Cflags: -I${includedir} -I${includedir}/ibex -I${includedir}/ibex/3rd -frounding-math -ffloat-store -msse3
+Libs: -L${libdir} -libex
+
